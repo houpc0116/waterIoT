@@ -13,7 +13,7 @@ def loginPage(request):
 ## login
 def handleLogin(request):
     if request.user.is_authenticated:                   #驗証是否有登入過
-       return redirect('/dispenser/?device=xinxing01')  #重新導向到首頁
+       return redirect('/map/')  #重新導向到首頁
     elif request.method=="POST":
        username = request.POST.get("username", '')
        password = request.POST.get("password", '')
@@ -22,7 +22,7 @@ def handleLogin(request):
        if user is not None and user.is_active:
           login(request, user)
           messages.success(request, 'Logout Success.')
-          return redirect('/dispenser/?device=xinxing01')  #重新導向到首頁
+          return redirect('/map/')  #重新導向到首頁
        else:
           messages.error(request, "Invalid credentials! Please try again")
           return redirect('/accounts/login/')

@@ -17,14 +17,40 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import include, re_path, url, handler404
 from account.views import loginPage, handleLogin, handleLogout
-from water.views import waterPage
+from water.views import waterPage, dispenserMap, peoplePage, GradePage, manageStudentPage, manageFacultyPage, statisticsDispenser, getDispenserInfo, showDispenserList, statisticsPeople, saveuploadfile, getAllStudentsData, insertStudentData, updateStudentData, deleteStudentData, updateMembersData, getDispenserInfoApi, dispenserInsulation, dispenserSavingpw, dispenserBactericide, getdispenserSetting, getDispenserPwstatus, getDispenserBactericide
 
 urlpatterns = [
+    path('', loginPage, name='index'),
     path('admin/', admin.site.urls),
     path('accounts/login/', loginPage, name='login'),
     path('login/auth/', handleLogin, name='login_auth'),
     path('accounts/logout/', handleLogout, name='logout'),
-    url(r'^dispenser/', waterPage, name='index'),      #飲水機資料
+    path ('dispensercrontrol/<str:device>/', waterPage, name='Dispenser_Crontrol'), # 飲水機控制頁面
+    path ('uploadstudentdata/', saveuploadfile, name='uploadStudentFile'), # Execl 上傳學生資料
+    path ('insertStudentsData/', insertStudentData, name='insertStudentData'), # 新增學生資料
+    path ('updStudentsData/', updateStudentData, name='updateStudentData'), # 更新學生資料
+    path ('updateMembersData/', updateMembersData, name='updateMembersData'), # 更新學生資料。 更新學生資料
+    path ('delStudentsData/', deleteStudentData, name='deleteStudentData'), # 刪除學生資料
+    path ('insulation/', dispenserInsulation, name='insulationSetting'), # 設定飲水機溫度設定 。2023.04.24
+    path ('savingPW/', dispenserSavingpw, name='SavingpwSetting'), # 設定飲水機節電設定 。2023.04.24
+    path ('bactericide/', dispenserBactericide, name='bactericideSetting'), # 設定飲水機殺菌設定 。2023.04.24
+    path ('getSetting/', getdispenserSetting, name='getSettingValue'), # 取出飲水機設定值 。2023.04.24
+    path ('getsavePwstatus/', getDispenserPwstatus, name='getSavePWValue'), # 取出飲水機節電狀態 。2023.04.24
+    path ('getBactericide/', getDispenserBactericide, name='getBactericideValue'), # 取出飲水機殺菌狀態 。2023.04.24
+    #url(r'^dispensercrontrol/', waterPage, name='index'),      # 飲水機控制頁面
+    url(r'^map/', dispenserMap, name='map'),           # dispenser Map
+    url(r'^peoplechart/', peoplePage, name='showPeopleChart'),           # show people statistics Page
+    url(r'^dispenserstatistics/', statisticsDispenser, name='statisticsDispenser'),  # dispenser statistics
+    url(r'^dispenserchart/', showDispenserList, name='showDispenserChart'),       # dispenser List and show dispenser Page
+    url(r'^dispenserinfo/', getDispenserInfo, name='getDispenserInfo'),           # dispenser Info
+    url(r'^peoplestatistics/', statisticsPeople, name='statisticsPeople'),        # people statistics
+    url(r'^gradechart/', GradePage, name='showGradeChart'),           # show grade statistics Page
+    url(r'^manage/student/', manageStudentPage, name='manageStudent'),           # 學生資料管理頁面
+    url(r'^manage/faculty/', manageFacultyPage, name='manageFaculty'),           # 教職員資料管理頁面
+    url(r'^studentsAllData/', getAllStudentsData, name='getAllStudentsInfo'),           # get all students Data
+    url(r'^display/get_dispenser_info/', getDispenserInfoApi, name='getDispenserInfoApi'),           # 取出飲水機相關資料的API (台科大使用) 。2023.04.13
+#    url(r'^searchStudentsData/', getSearchStudentsData, name='getSearchStudentsInfo'),           # get search students Data
+#    url(r'^uploadstudentdata/', saveuploadfile, name='uploadStudentFile'),           # 上傳Execl
 #   path('index/', waterPage, name='index'),
 #   url(r'^accounts/login/', loginPage),      #Login 頁面
 ]

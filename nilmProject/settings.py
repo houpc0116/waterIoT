@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c6w!us^y=$-04x*tm-#=v6vvlbds@mtr3$e4$@9m9ukp*cqa^@'
+SECRET_KEY = 'django-insecure-@)zb0shh_)2j64n=u2q1a5ffh5!1jrt3)qh)^9x59z^hunf%5v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -57,8 +57,8 @@ ROOT_URLCONF = 'nilmProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-#        'DIRS': [],
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        #'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,7 +71,6 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'nilmProject.wsgi.application'
 
 
@@ -81,13 +80,14 @@ WSGI_APPLICATION = 'nilmProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'water',
-        'USER': 'sinewiot',
-        'PASSWORD': 'sinew3612',
+        'NAME': 'dispenser',
+        'USER': 'xinxing',
+        'PASSWORD': 'xinxing',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
+
 
 #DATABASES = {
 #    'default': {
@@ -136,6 +136,10 @@ USE_L10N = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
